@@ -60,11 +60,14 @@ Print "Unzipping Zip File"
 unzip /tmp/frontend.zip 
 STAT "$?" "Unzipping"
 
-PRINT "Moving Main File"
+PRINT "Moving Main Folder"
 mv frontend-main/* .
-STAT "$?" "Main file move"
+STAT "$?" "Main folder move"
 
+PRINT "Moving Static Folder"
 mv static/* .
+STAT "$?" "Static Folder move"
+
 rm -rf frontend-master README.md
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 
