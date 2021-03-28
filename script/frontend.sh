@@ -20,6 +20,7 @@ if [ -d "$DIR" ]; then
     echo "--------------------------------------------------------------------------------------------------------"
     echo -e "\e[1;32m [SUCCESS] Directory Changed\e[0m"
     echo "--------------------------------------------------------------------------------------------------------"
+    pwd
 else
     echo "--------------------------------------------------------------------------------------------------------"
     echo -e "\e[1;31m [ERROR] Cant find the /usr/share/nginx/html directory\e[0m"
@@ -38,6 +39,8 @@ else
     echo "--------------------------------------------------------------------------------------------------------"
     echo -e "\e[1;31m [SUCCESS] $DIR is empty\e[0m"
     echo "--------------------------------------------------------------------------------------------------------"
+    ls -larth
+    pwd
 fi
 
 PRINT "Unzipping Zip File"
@@ -47,18 +50,23 @@ STAT "$?" "Unzipping"
 PRINT "Moving Main Folder"
 mv frontend-main/* .
 STAT "$?" "Main folder move"
+ls -larth
 
 PRINT "Moving Static Folder"
 mv static/* .
 STAT "$?" "Static Folder move"
+ls -larth
 
 PRINT "Remove Frontend & README"
 rm -rf frontend-master README.md
 STAT "$?" "Removal of Frontend & README"
+ls -larth
 
 PRINT "Move localhost.conf file to roboshop"
+cat /etc/nginx/default.d/roboshop.conf
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 STAT "$?" "Move"
+cat /etc/nginx/default.d/roboshop.conf
 
 PRINT "Enable Nginx"
 systemctl enable nginx 
