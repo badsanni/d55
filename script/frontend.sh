@@ -52,10 +52,26 @@ PRINT "Moving Static Folder"
 mv static/* .
 STAT "$?" "Static Folder move"
 
+PRINT "Remove Frontend & README"
 rm -rf frontend-master README.md
+STAT "$?" "Removal of Frontend & README"
+
+PRINT "Move localhost.conf file to roboshop"
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
+STAT "$?" "Move"
 
+PRINT "Enable Nginx"
 systemctl enable nginx 
-systemctl start nginx 
+STAT "$?" "Check"
 
+PRINT "Start Nginx"
+systemctl start nginx 
+STAT "$?" "Start"
+
+PRINT "Restart Nginx"
 systemctl restart nginx
+STAT "$?" "Restart"
+
+PRINT "Check Status Nginx"
+systemctl status nginx
+STAT "$?" "Status"
